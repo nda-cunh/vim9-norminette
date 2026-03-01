@@ -21,7 +21,10 @@ endif
 command -nargs=0 Norm Supra.HighlightNorm(expand("%"))
 
 # Keymaps
-noremap <leader><F3>		<scriptcmd>Supra.ToggleNorm()<CR>
+noremap <unique> <Plug>SupraToggleNorm <scriptcmd>Supra.ToggleNorm()<CR>
+if !hasmapto('<Plug>SupraToggleNorm') && mapcheck("<leader><F3>", "n") == ""
+    nmap <leader><F3> <Plug>SupraToggleNorm
+endif
 
 g:supranorminette_enabled = get(g:, 'supranorminette_enabled', true)
 
