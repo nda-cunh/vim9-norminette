@@ -75,21 +75,21 @@ enddef
 export def DisableNorm()
 	sign unplace *
 	echo "[SupraNorm disabled]"
-	supranorminette_enabled  = false
-	auto! Norminette 
+	g:supranorminette_enabled = false
+	silent auto! Norminette 
 enddef
 
 export def EnableNorm()
 	echo "[SupraNorm enabled]"
-	supranorminette_enabled  = true
-	call EnableAugroup()
+	g:supranorminette_enabled = true
+	EnableAugroup()
 	silent noautocmd w!
 	Norm
 enddef
 
 export def ToggleNorm()
-	supranorminette_enabled  = !supranorminette_enabled 
-	if supranorminette_enabled  == true
+	g:supranorminette_enabled = !g:supranorminette_enabled 
+	if g:supranorminette_enabled == true
 		EnableNorm()
 	else
 		DisableNorm()
