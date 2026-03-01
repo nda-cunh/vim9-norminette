@@ -4,6 +4,9 @@
 
 ---
 
+<img width="1128" height="563" alt="image" src="https://github.com/user-attachments/assets/0d6b266b-890b-4527-97a2-773c762a9ee5" />
+
+
 ## ✨ Caractéristiques
 
 * 🖍️ **Visualisation claire** : Signes dans la `signcolumn` et soulignement des erreurs.
