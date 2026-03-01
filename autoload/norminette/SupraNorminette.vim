@@ -27,7 +27,7 @@ def GotOutput(channel: channel, msg: string)
 			if txt >= 100
 				exe "sign place 2 line=" .. groups[2] .. " name=NormLinter file=" .. filename
 			else
-				exe "sign define FunctionLines_" .. txt .. " text=" .. txt .. " icon=FunctionLines texthl=DapBreakpoint"
+				exe "sign define FunctionLines_" .. txt .. " text=" .. txt .. " icon=FunctionLines texthl=SupraNormPoint"
 				exe ":sign place 1 line=" .. groups[2] " name=FunctionLines_" .. txt .. " file=" .. filename
 			endif
 		elseif groups[4] != "Missing or invalid 42 header"

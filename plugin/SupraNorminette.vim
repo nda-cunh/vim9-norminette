@@ -8,14 +8,13 @@ g:loaded_supra_norminette = 1
 import autoload 'norminette/SupraNorminette.vim' as Supra
 
 ## Highlight groups
-hi def DapBreakpoint ctermfg=135 guifg=#a750ff
-hi def link NormErrors Underlined
+hi def SupraNormPoint ctermfg=135 guifg=#a750ff
 
 # Sign definition
 if exists('g:sp_symbol_signs')
-	execute 'sign define NormLinter text=' .. g:sp_symbol_signs .. ' texthl=DapBreakpoint'
+	execute 'sign define NormLinter text=' .. g:sp_symbol_signs .. ' texthl=SupraNormPoint'
 else
-	sign define NormLinter text=✗ texthl=DapBreakpoint
+	sign define NormLinter text=✗ texthl=SupraNormPoint
 endif
 
 # Commands
