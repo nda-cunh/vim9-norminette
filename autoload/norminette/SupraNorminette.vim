@@ -76,7 +76,7 @@ export def DisableNorm()
 	sign unplace *
 	echo "[SupraNorm disabled]"
 	g:supranorminette_enabled = false
-	silent auto! Norminette 
+	silent! auto! Norminette 
 enddef
 
 export def EnableNorm()
