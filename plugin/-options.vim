@@ -13,9 +13,9 @@ supraconfig#RegisterMany([
         type: 'bool',
         default: true,
         lore: 'Enable norminette',
-        spawn: false,
+        spawn: null_function,
         handler: (v) => {
-			if $"{v}" == 'true'
+			if v == true
                 NNorme.EnableNorm()
             else
                 NNorme.DisableNorm()
