@@ -2,6 +2,7 @@ vim9script
 
 var g_errors: list<list<string>> = []
 var filename_norm: string
+const SIGN_GROUP = 'SupraNorminette'
 
 def CountLine(linenb: number): number
 	var start = linenb
@@ -25,13 +26,13 @@ def GotOutput(channel: channel, msg: string)
 		if groups[4] == "Function has more than 25 lines"
 			var txt = CountLine(str2nr(groups[2]))
 			if txt >= 100
-				exe "sign place 2 line=" .. groups[2] .. " name=NormLinter file=" .. filename
+				sign_place(2, SIGN_GROUP, 'NormLinter', filename, {lnum: str2nr(groups[2])})
 			else
 				exe "sign define FunctionLines_" .. txt .. " text=" .. txt .. " icon=FunctionLines texthl=SupraNormPoint"
-				exe ":sign place 1 line=" .. groups[2] " name=FunctionLines_" .. txt .. " file=" .. filename
+				sign_place(1, SIGN_GROUP, 'FunctionLines_' .. txt, filename, {lnum: str2nr(groups[2])})
 			endif
 		elseif groups[4] != "Missing or invalid 42 header"
-			exe ":sign place 2 line=" .. groups[2] " name=NormLinter file=" .. filename
+			sign_place(2, SIGN_GROUP, 'NormLinter', filename, {lnum: str2nr(groups[2])})
 		endif
 	endif
 enddef
@@ -40,7 +41,7 @@ enddef
 export def HighlightNorm(filename: string)
 	g_errors = []
 	filename_norm = filename
-	sign unplace *
+	sign_unplace(SIGN_GROUP)
 	job_start(["norminette", filename], {
 		out_cb: GotOutput,
 		out_timeout: 3000
@@ -73,7 +74,7 @@ export def EnableAugroup()
 enddef
 
 export def DisableNorm()
-	sign unplace *
+	sign_unplace(SIGN_GROUP)
 	echo "[SupraNorm disabled]"
 	g:supranorminette_enabled = false
 	silent! auto! Norminette 
